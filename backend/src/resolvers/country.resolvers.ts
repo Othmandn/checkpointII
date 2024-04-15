@@ -14,6 +14,18 @@ export class CountryResolver {
     }
   }
 
+  @Query(() => Country)
+  async getCountryByCode(
+    @Arg("countryCode") countryCode: string
+  ): Promise<Country | string> {
+    try {
+      return await countryService.getCountryByCode(countryCode);
+    } catch (error) {
+      console.error(`Error while fetching country: ${error}`);
+      return "no country found";
+    }
+  }
+
   @Mutation(() => Country)
   async addCountry(
     @Arg("countryData") countryData: CountriesInputs

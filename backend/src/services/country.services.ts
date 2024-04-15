@@ -10,6 +10,17 @@ export const getAllCountries = async (): Promise<Country[]> => {
   }
 };
 
+export const getCountryByCode = async (
+  countryCode: string
+): Promise<Country> => {
+  try {
+    return await Country.findOneByOrFail({ countryCode });
+  } catch (error) {
+    console.error("Failed to fetch country:", error);
+    throw new Error("Failed to fetch country");
+  }
+};
+
 export async function createCountry(
   countryData: CountriesInputs
 ): Promise<Country> {
