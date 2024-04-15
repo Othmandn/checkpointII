@@ -29,7 +29,12 @@ export class CountryResolver {
   @Mutation(() => Country)
   async addCountry(
     @Arg("countryData") countryData: CountriesInputs
-  ): Promise<Country> {
-    return countryService.createCountry(countryData);
+  ): Promise<Country | string> {
+    try {
+      return await countryService.createCountry(countryData);
+    } catch (error) {
+      console.error(`Error while creating country: ${error}`);
+      return "no country created";
+    }
   }
 }
