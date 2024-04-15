@@ -1,4 +1,4 @@
-import { Arg, Query, Resolver } from "type-graphql";
+import { Arg, Query, Resolver, Mutation } from "type-graphql";
 import { Country } from "../entities/country";
 import { CountriesInputs } from "../inputs/countries.inputs";
 import * as countryService from "../services/country.services";
@@ -12,5 +12,12 @@ export class CountryResolver {
       console.error(`Error while fetching countries: ${error}`);
       return [];
     }
+  }
+
+  @Mutation(() => Country)
+  async addCountry(
+    @Arg("countryData") countryData: CountriesInputs
+  ): Promise<Country> {
+    return countryService.createCountry(countryData);
   }
 }

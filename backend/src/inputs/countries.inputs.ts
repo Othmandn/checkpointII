@@ -10,6 +10,6 @@ export class CountriesInputs {
   countryCode: string;
 
   @Field()
-  @Length(1, 10)
+  @Length(1, 20)
   flag: string;
 }
