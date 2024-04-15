@@ -1,5 +1,4 @@
 import { createServer } from "./config/server";
-import * as dotenv from "dotenv";
 const port: number = 3001;
 
 const start = async () => {
